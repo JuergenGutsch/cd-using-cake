@@ -11,7 +11,7 @@ var publishfolder = Argument("publishfolder", "./drop/");
 
 var build =  environment != "Production" ? String.Format("-build{0}", buildnumber) : "";
 var version = "0.0.1";
-var artifactName = $"BIS.DataCatalog-{version}{build}.zip";
+var artifactName = $"WebToDeploy-{version}{build}.zip";
 
 Task("CleanDirectory")
 	.Does(() =>
@@ -22,7 +22,7 @@ Task("CleanDirectory")
 Task("DotNetRestore")
 	.IsDependentOn("CleanDirectory")
 	.Does(() => {
-		DotNetCoreRestore("./src/BIS.DataCatalog.sln");
+		DotNetCoreRestore("./src/WebToDeploy.sln");
 	});
 
 Task("DotNetBuild")
@@ -34,7 +34,7 @@ Task("DotNetBuild")
 			Configuration = configuration,
 			NoRestore = true
 		};
-		DotNetCoreBuild("./src/BIS.DataCatalog.sln", settings);
+		DotNetCoreBuild("./src/WebToDeploy.sln", settings);
 	});
 
 Task("DotNetTest")
@@ -46,7 +46,7 @@ Task("DotNetTest")
 			Configuration = configuration,
 			NoBuild = true
 		};
-		DotNetCoreTest("./src/BIS.DataCatalog.Tests/", settings);
+		DotNetCoreTest("./src/WebToDeploy.Tests/", settings);
 	});
 
 Task("DotNetPublish")
@@ -64,7 +64,7 @@ Task("DotNetPublish")
                 .Append($"/p:InformationalVersion={version}{build}"),
 			NoRestore = true
 		};
-		DotNetCorePublish("./src/BIS.DataCatalog/", settings);
+		DotNetCorePublish("./src/WebToDeploy/", settings);
 	});
 
 Task("PackApplication")
