@@ -81,6 +81,7 @@ Task("PublishArtifact")
 	.Does(() => 
 	{
 		var target = $"./published/{artifactName}";
+		CreateDirectory(publishfolder);
 		CopyFile(target, System.IO.Path.Combine(publishfolder, artifactName));
 		Information($"Published to {target}.");
 	});
