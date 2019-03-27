@@ -44,7 +44,8 @@ Task("DotNetTest")
 		var settings = new DotNetCoreTestSettings
 		{
 			Configuration = configuration,
-			NoBuild = true
+			NoBuild = true,
+			VSTestReportPath = "./testresult.xml"
 		};
 		DotNetCoreTest("./src/WebToDeploy.Tests/", settings);
 	});
