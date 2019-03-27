@@ -10,7 +10,7 @@ var buildnumber = Argument("buildnumber", "0");
 var publishfolder = Argument("publishfolder", "./drop/");
 
 var build =  environment != "Production" ? String.Format("-build{0}", buildnumber) : "";
-var version = "1.0.0";
+var version = "2.0.0";
 var artifactName = $"WebToDeploy-{version}{build}.zip";
 
 Task("CleanDirectory")
@@ -44,7 +44,8 @@ Task("DotNetTest")
 		var settings = new DotNetCoreTestSettings
 		{
 			Configuration = configuration,
-			NoBuild = true
+			NoBuild = true,
+			VSTestReportPath = "./testresult.xml"
 		};
 		DotNetCoreTest("./src/WebToDeploy.Tests/", settings);
 	});
