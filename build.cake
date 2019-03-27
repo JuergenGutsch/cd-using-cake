@@ -10,7 +10,7 @@ var buildnumber = Argument("buildnumber", "0");
 var publishfolder = Argument("publishfolder", "./drop/");
 
 var build =  environment != "Production" ? String.Format("-build{0}", buildnumber) : "";
-var version = "0.0.1";
+var version = "1.0.0";
 var artifactName = $"WebToDeploy-{version}{build}.zip";
 
 Task("CleanDirectory")
